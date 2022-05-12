@@ -1,4 +1,4 @@
-package com.devinhouse.estoquepreco.constants;
+package com.devinhouse.libestoque.constants;
 
 public final class RabbitMQConstants {
 

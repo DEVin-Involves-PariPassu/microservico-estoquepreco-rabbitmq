@@ -1,4 +1,4 @@
-package com.devinhouse.estoquepreco.dto;
+package com.devinhouse.libestoque.dto;
 
 import java.io.Serializable;
 
