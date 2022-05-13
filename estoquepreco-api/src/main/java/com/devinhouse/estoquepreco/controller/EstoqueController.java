@@ -1,8 +1,8 @@
 package com.devinhouse.estoquepreco.controller;
 
-import com.devinhouse.estoquepreco.constants.RabbitMQConstants;
-import com.devinhouse.estoquepreco.dto.EstoqueDto;
 import com.devinhouse.estoquepreco.service.RabbitMQService;
+import com.devinhouse.libestoque.constants.RabbitMQConstants;
+import com.devinhouse.libestoque.dto.EstoqueDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;

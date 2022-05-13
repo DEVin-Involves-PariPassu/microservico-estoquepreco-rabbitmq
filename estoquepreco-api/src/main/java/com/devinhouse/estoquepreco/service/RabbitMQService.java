@@ -1,7 +1,7 @@
 package com.devinhouse.estoquepreco.service;
 
-import com.devinhouse.estoquepreco.constants.RabbitMQConstants;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import com.devinhouse.libestoque.constants.RabbitMQConstants;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 public class RabbitMQService {
 
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private AmqpTemplate amqpTemplate;
 
 
     public void enviarMensagem(String routingKey, Object mensagem) {
-        this.rabbitTemplate.convertAndSend(RabbitMQConstants.EXCHANGE, routingKey, mensagem);
+        this.amqpTemplate.convertAndSend(RabbitMQConstants.EXCHANGE, routingKey, mensagem);
     }
 }
