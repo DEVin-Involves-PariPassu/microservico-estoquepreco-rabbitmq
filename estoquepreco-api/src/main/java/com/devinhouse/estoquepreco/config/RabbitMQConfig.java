@@ -30,9 +30,16 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    Queue filaEstoque() {
+    Queue filaEstoque(DirectExchange directExchange) {
         return QueueBuilder.durable(RabbitMQConstants.FILA_ESTOQUE)
+                .deadLetterExchange(directExchange.getName())
+                .deadLetterRoutingKey("estoque-dead-letter")
                 .build();
+    }
+
+    @Bean
+    Queue filaEstoqueDeadLetter() {
+        return QueueBuilder.durable(RabbitMQConstants.FILA_ESTOQUE + ".dead-letter").build();
     }
 
     @Bean
@@ -44,6 +51,12 @@ public class RabbitMQConfig {
     Binding bindingFilaEstoque(Queue filaEstoque, DirectExchange directExchange) {
         return BindingBuilder.bind(filaEstoque).to(directExchange)
                 .with(RabbitMQConstants.FILA_ESTOQUE);
+    }
+
+    @Bean
+    Binding bindingFilaDeadLetter(Queue filaEstoqueDeadLetter, DirectExchange directExchange) {
+        return BindingBuilder.bind(filaEstoqueDeadLetter).to(directExchange)
+                .with("estoque-dead-letter");
     }
 
     @Bean
